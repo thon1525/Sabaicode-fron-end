@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<style>
+    .container {
+
+    }
+</style>
+<body>
+    <h2>To-Do List</h2>
+    <div class="container">
+        <div class="container-input" id="container-input">
+            <input type="text" class="showname">
+            <button id="btn-sum">+</button>
+        </div>
+    </div>
+    <ul id="todo-list"></ul>
+
+    <script>
+        const btn = document.getElementById('btn-sum');
+        const containerInput = document.getElementById('container-input');
+        const todoList = document.getElementById('todo-list');
+
+        btn.addEventListener('click', () => {
+            const inputValue = document.querySelector('.showname').value;
+
+            if (inputValue.trim() !== '') {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = inputValue;
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = '-';
+                    deleteButton.addEventListener('click', () => {
+                        todoList.removeChild(listItem);
+                });
+
+                listItem.appendChild(deleteButton);
+                todoList.appendChild(listItem);
+
+                // Clear the input field
+                document.querySelector('.showname').value = '';
+            }
+        });
+    </script>
+</body>
+</html>

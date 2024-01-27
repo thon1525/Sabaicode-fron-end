@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form id="submitdata">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <span id="emailError" class="error"></span>
+        <button type="button" id="sentdata">complete</button>
+    </form>
+    <script>
+        const user = {
+            emailuser: "thon@gmail.com",
+        }
+        const dataarray = user.emailuser;
+
+        document.getElementById('sentdata').addEventListener('click', () => {
+            var email = document.getElementById('email').value;
+            var emaildata = document.getElementById('email');
+            if (email == "") {
+                document.getElementById('emailError').innerHTML = 'Email is required';
+                return false;
+            }
+
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailError').innerHTML = 'Invalid email address';
+                    document.getElementById('emailError').style.display = "block";
+                    return false;
+                }
+
+            var eamilcom = /^[^\s@]+@[^\s@]+\.[^\s@]+$|^@[^\s@]+\.[^\s@]+$/;
+            if (!eamilcom.test(email)) {
+                document.getElementById('emailError').innerHTML = 'Invalid email address';
+                document.getElementById('emailError').style.display = "block";
+                return false;
+            }
+
+            if (dataarray == email) {
+                alert("ok")
+            }
+        });
+
+        // Add input event listener to the email input
+        document.getElementById('email').addEventListener('input', function () {
+            document.getElementById('emailError').style.display = "none";
+        });
+    </script>
+</body>
+</html>

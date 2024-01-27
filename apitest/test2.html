@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagination Example</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+      .card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+        display:flex;
+        flex-direction: column;
+      }
+
+      #cardContainer{
+        display: flex;
+        flex-direction: row;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cardContainer"></div>
+    <button id="btn_previous">Previous</button>
+    <span id="currentPage">Page 1</span>
+    <button id="btn_next">Next</button>
+
+    <script>
+      let currentPage = 1;
+      const itemsPerPage = 10;
+      const dataUrl = "https://jsonplaceholder.typicode.com/photos";
+      const cardContainer = document.getElementById("cardContainer");
+      const currentPageElement = document.getElementById("currentPage");
+
+      async function fetchData(url) {
+        try {
+          const response = await fetch(url);
+          const result = await response.json();
+          return result;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      async function displayData(page) {
+        cardContainer.innerHTML = ''; // Clear existing cards
+
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        const result = await fetchData(
+          `${dataUrl}?_start=${start}&_end=${end}`
+        );
+
+        result.map((data) => {
+          const { id, title, url, thumbnailUrl } = data;
+          const cardDiv = document.createElement("div");
+          cardDiv.classList.add("card");
+
+          const imgElement = document.createElement("img");
+          imgElement.src = thumbnailUrl;
+          imgElement.alt = title;
+
+          const cardContentDiv = document.createElement("div");
+          cardContentDiv.classList.add("card-content");
+
+          const titleElement = document.createElement("h2");
+          titleElement.textContent = title;
+
+          const descriptionElement = document.createElement("p");
+          descriptionElement.textContent = "This is a simple card example.";
+
+          const readMoreLink = document.createElement("a");
+          readMoreLink.href = url;
+          readMoreLink.textContent = "Read more";
+
+          cardDiv.appendChild(imgElement);
+          cardDiv.appendChild(cardContentDiv);
+          cardContentDiv.appendChild(titleElement);
+          cardContentDiv.appendChild(descriptionElement);
+          cardContentDiv.appendChild(readMoreLink);
+
+          cardContainer.appendChild(cardDiv);
+        });
+
+        currentPageElement.textContent = `Page ${page}`;
+      }
+
+      document.getElementById("btn_previous").addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          displayData(currentPage);
+        }
+      });
+
+      document.getElementById("btn_next").addEventListener("click", () => {
+        currentPage++;
+        displayData(currentPage);
+      });
+
+      // Initial data fetch and display
+      displayData(currentPage);
+    </script>
+  </body>
+</html>

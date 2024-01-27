@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .showelement {
+        width: 200px;
+        height: 300px;
+        background-color: blue;
+    }
+    .hideelement {
+        width: 900px;
+        height: 300px;
+        background-color: rgb(99, 29, 75);
+    }
+</style>
+<body>
+    <div class="showelement">
+
+    </div>
+    <button id="show" type="button">show</button>
+    <button id="hide" type="button">hide</button>
+</body>
+<script>
+    const showButton = document.getElementById("show");
+    const hideButton = document.getElementById("hide");
+    const container = document.body;
+
+    showButton.addEventListener('click', function () {
+        const hideElement = document.querySelector('.hideelement');
+        hideElement.remove();
+
+        const showElement = document.createElement('div');
+        showElement.className = 'showelement';
+        container.appendChild(showElement);
+    });
+
+    hideButton.addEventListener('click', function () {
+        const showElement = document.querySelector('.showelement');
+        showElement.remove();
+
+        const hideElement = document.createElement('div');
+        hideElement.className = 'hideelement';
+        container.appendChild(hideElement);
+    });
+</script>
+</html>

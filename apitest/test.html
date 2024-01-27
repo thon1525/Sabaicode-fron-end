@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Add your styling for cards and pagination buttons here */
+  </style>
+  <title>Pagination Example</title>
+</head>
+<body>
+  <div id="cardContainer"></div>
+  <button id="btn_previous">Previous</button>
+  <button id="btn_next">Next</button>
+
+  <script>
+    const url = 'https://jsonplaceholder.typicode.com/photos';
+    const btn_previous = document.getElementById('btn_previous');
+    const btn_next = document.getElementById('btn_next');
+    const cardContainer = document.getElementById('cardContainer');
+    let currentPage = 1;
+    const itemsPerPage = 10;
+
+    async function fetchData(page) {
+      try {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const response = await fetch(`${url}?_start=${start}&_end=${end}`);
+        const data = await response.json();
+        return data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    function displayData(data) {
+      cardContainer.innerHTML = ''; // Clear previous data
+      data.forEach(item => {
+        carsdata(item);
+      });
+    }
+
+    async function updateData(page) {
+      const data = await fetchData(page);
+      displayData(data);
+    }
+
+    async function datatoobject() {
+      await updateData(currentPage);
+    }
+
+    btn_previous.addEventListener('click', async () => {
+      if (currentPage > 1) {
+        currentPage--;
+        await updateData(currentPage);
+      }
+    });
+
+    btn_next.addEventListener('click', async () => {
+      currentPage++;
+      await updateData(currentPage);
+    });
+
+    datatoobject();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Add your styling for cards and pagination buttons here */
+  </style>
+  <title>Pagination Example</title>
+</head>
+<body>
+  <div id="cardContainer"></div>
+  <button id="btn_previous">Previous</button>
+  <button id="btn_next">Next</button>
+
+  <script>
+    const url = 'https://jsonplaceholder.typicode.com/photos';
+    const btn_previous = document.getElementById('btn_previous');
+    const btn_next = document.getElementById('btn_next');
+    const cardContainer = document.getElementById('cardContainer');
+    let currentPage = 1;
+    const itemsPerPage = 10;
+
+    async function fetchData(page) {
+      try {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const response = await fetch(`${url}?_start=${start}&_end=${end}`);
+        const data = await response.json();
+        return data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    function displayData(data) {
+      cardContainer.innerHTML = ''; // Clear previous data
+      data.forEach(item => {
+        carsdata(item);
+      });
+    }
+
+    async function updateData(page) {
+      const data = await fetchData(page);
+      displayData(data);
+    }
+
+    async function datatoobject() {
+      await updateData(currentPage);
+    }
+
+    btn_previous.addEventListener('click', async () => {
+      if (currentPage > 1) {
+        currentPage--;
+        await updateData(currentPage);
+      }
+    });
+
+    btn_next.addEventListener('click', async () => {
+      currentPage++;
+      await updateData(currentPage);
+    });
+
+    datatoobject();
+  </script>
+</body>
+</html>

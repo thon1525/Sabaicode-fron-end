@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<p id="demo"></p>
+    <script>
+        const heightMark=78;
+        const  massMark = 70;
+
+        let massJohn = 80; // mass in kg
+        let heightJohn = 1.80; // height in meters
+
+        let BMIMark = massMark / (heightMark * heightMark);
+        let BMIJohn = massJohn / (heightJohn * heightJohn);
+        document.getElementById("demo").innerHTML=BMIMark+BMIJohn+"";
+      
+
+    </script>
+</body>
+</html>
