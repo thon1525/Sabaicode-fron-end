@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+//        const age = 8;
+// const age2 = 15;
+// const age3 = 35;
+// const age4 = 70;
+// Function to classify age group
+function classifyAge(age) {
+    if (age <= 12) {
+        return "Child";
+    } else if (age <= 19) {
+        return "Teen";
+    } else if (age <= 60) {
+        return "Adult";
+    } else {
+        return "Senior";
+    }
+}
+
+// Example usage
+let personAge = 25;
+let ageGroup = classifyAge(personAge);
+
+console.log(`Person's age group: ${ageGroup}`);
+
+    </script>
+</body>
+</html>

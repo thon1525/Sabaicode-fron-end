@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekday Name</title>
+</head>
+<body>
+
+    <label for="dayNumberInput">Enter day number (1-7): </label>
+    <input type="number" id="dayNumberInput" min="1" max="7" />
+    <button onclick="showWeekday()">Show Weekday</button>
+
+    <p id="result"></p>
+
+    <script>
+        function getWeekdayName(number) {
+            switch (number) {
+                case 1:
+                    return "Sunday";
+                case 2:
+                    return "Monday";
+                case 3:
+                    return "Tuesday";
+                case 4:
+                    return "Wednesday";
+                case 5:
+                    return "Thursday";
+                case 6:
+                    return "Friday";
+                case 7:
+                    return "Saturday";
+                default:
+                    return "Invalid day number";
+            }
+        }
+
+        function showWeekday() {
+            const dayNumberInput = document.getElementById("dayNumberInput");
+            const resultElement = document.getElementById("result");
+
+            const dayNumber = parseInt(dayNumberInput.value);
+
+            if (dayNumber >= 1 && dayNumber <= 7) {
+                const dayOfWeek = getWeekdayName(dayNumber);
+                resultElement.textContent = `The day corresponding to ${dayNumber} is ${dayOfWeek}`;
+            } else {
+                resultElement.textContent = "Please enter a valid day number (1-7)";
+            }
+        }
+    </script>
+
+</body>
+</html>

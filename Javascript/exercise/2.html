@@ -1,0 +1,27 @@
+<script>
+    // Variables for Mark
+let massMark = 70; // mass in kg
+let heightMark = 1.75; // height in meters
+
+// Variables for John
+let massJohn = 80; // mass in kg
+let heightJohn = 1.80; // height in meters
+
+// Calculate BMIs
+let BMIMark = massMark / (heightMark * heightMark);
+let BMIJohn = massJohn / (heightJohn * heightJohn);
+
+// Determine and log the comparison result
+let markHigherBMI = BMIMark > BMIJohn;
+
+// Output the results using template literals
+// if (markHigherBMI) {
+//   console.log(`Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!`);
+// } else {
+//   console.log(`John's BMI (${BMIJohn}) is higher than Mark's (${BMIMark})!`);
+// }
+
+if(BMIMark>BMIJohn){
+    console.log(`Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!`); 
+}
+</script>

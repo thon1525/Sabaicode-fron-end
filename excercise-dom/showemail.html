@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #emailError{
+            color: red;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <form id="submitdata">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <span id="emailError" class="error"></span>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+             const user = {
+            emailuser: "thon@gmail.com",
+        }
+        const submittedEmails = []; // Array to store submitted emails
+
+        const submitdata = document.getElementById('submitdata');
+        submitdata.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            const email = document.getElementById("email").value;
+            if (email === "") {
+                document.getElementById('emailError').innerText = "Invalid email";
+                return false;
+            } 
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').innerHTML = 'Invalid email address';
+                document.getElementById('emailError').style.display = "block";
+                return false;
+            }
+
+            var emailDomain = email.split('@')[1];
+            if (emailDomain.toLowerCase() !== 'gmail.com') {
+                document.getElementById('emailError').innerHTML = 'Only @gmail.com addresses are allowed';
+                document.getElementById('emailError').style.display = "block";
+                return false;
+            }
+
+            if (dataarray == email) {
+                alert("ok")
+            }
+
+        });
+    </script>
+</body>
+</html>

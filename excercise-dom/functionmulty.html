@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        display: flex;
+        justify-content: space-around;
+    }
+</style>
+<body>
+    <h2>to do list </h2>
+    <div class="container">
+        <div class="container-input" id="container-input">
+            <input type="text" class="showname">
+            <button id="btn-sum">+</button>
+        </div>
+        <div class="btn-save">
+            <button type="button" id="save">save</button>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('btn-sum');
+        const containerInput = document.getElementById('container-input');
+
+        btn.addEventListener('click', () => {
+            const newInput = document.createElement('input');
+            newInput.type = 'text';
+            containerInput.appendChild(newInput);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '-';
+            deleteButton.addEventListener('click', () => {
+                containerInput.removeChild(newInput);
+                containerInput.removeChild(deleteButton);
+            });
+
+            containerInput.appendChild(deleteButton);
+        });
+
+        function getToDoListValues() {
+            const inputFields = document.querySelectorAll('.container-input input');
+            const values = Array.from(inputFields).map(input => input.value);
+            alert(values);
+        }
+        const save=document.getElementById('save');
+   save.addEventListener('click',function(){
+    getToDoListValues() 
+   })
+    </script>
+</body>
+</html>
